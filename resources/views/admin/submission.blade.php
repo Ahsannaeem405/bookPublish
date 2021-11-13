@@ -2,8 +2,11 @@
 @section('tittle')
 Submission
 @endsection
-<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/plugins/file-uploaders/dropzone.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/pages/dropzone.css')}}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/plugins/file-uploaders/dropzone.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/pages/dropzone.css')}}"> --}}
 <style>
     .form {
         padding: 10px;
@@ -13,7 +16,7 @@ min-height: 200px !important;
     }
     .dropzone .dz-message {
     text-align: center;
-    margin: -1em 0 !important;
+    margin: -2em 0 !important;
 }
 
 </style>
@@ -154,13 +157,8 @@ min-height: 200px !important;
           </button>
         </div>
         <div class="modal-body">
-            <div class="card-body">
+            <input name="file1" type="file" class="dropify" data-height="100" />
 
-                <button id="select-files" class="btn btn-primary mb-1 dz-clickable"><i class="ft-file"></i> Click me to select files</button>
-                <form action="#" class="dropzone dropzone-area dz-clickable" id="dpz-btn-select-files">
-                    <div class="dz-message">Drop Files Here To Upload</div>
-                </form>
-            </div>
         </div>
         <div class="modal-footer">
             <a class="btn btn-danger" style="color: white" onClick="window.location.reload()">Cancel</a>
@@ -178,6 +176,9 @@ min-height: 200px !important;
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-    <script src="{{asset('app_asset/vendors/js/extensions/dropzone.min.js')}}"></script>
-    <script src="{{asset('app_asset/js/scripts/extensions/dropzone.js')}}"></script>
+    {{-- <script src="{{asset('app_asset/vendors/js/extensions/dropzone.min.js')}}"></script>
+    <script src="{{asset('app_asset/js/scripts/extensions/dropzone.js')}}"></script> --}}
+    <script>
+        $('.dropify').dropify();
+    </script>
 @endsection
