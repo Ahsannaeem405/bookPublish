@@ -2,8 +2,12 @@
 @section('tittle')
 Add Book
 @endsection
-<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/plugins/file-uploaders/dropzone.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/pages/dropzone.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/plugins/file-uploaders/dropzone.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/pages/dropzone.css')}}"> --}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 <style>
 .div_input{
     margin-top: 20px;
@@ -56,7 +60,8 @@ Add Book
                                       <div class="row" style="padding: 10px">
                                           <div class="col-lg-12 col-12 div_input">
 
-                                            <input type="file" id="myfile" name="myfile">
+                                            {{-- <input type="file" id="myfile" name="myfile"> --}}
+                                            <input name="file1" type="file" class="dropify" data-height="100" />
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
 
@@ -143,6 +148,9 @@ Add Book
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-    <script src="{{asset('app_asset/vendors/js/extensions/dropzone.min.js')}}"></script>
-    <script src="{{asset('app_asset/js/scripts/extensions/dropzone.js')}}"></script>
+    {{-- <script src="{{asset('app_asset/vendors/js/extensions/dropzone.min.js')}}"></script>
+    <script src="{{asset('app_asset/js/scripts/extensions/dropzone.js')}}"></script> --}}
+    <script>
+        $('.dropify').dropify();
+    </script>
 @endsection
