@@ -82,6 +82,11 @@ Submission
 
                                             <input type="password" class="form-control" placeholder="Confirm Password">
                                         </div>
+                                        <div class="col-lg-12  col-12" style="padding:20px">
+
+
+                                            <button class="btn btn-primary" style="float: right;">Update</button>
+                                         </div>
 
                                     </div>
                                 </div>
