@@ -1,6 +1,6 @@
 @extends('admin//layout/main')
 @section('tittle')
-Inactive Books
+Reject Books
 @endsection
 <style>
     .form {
@@ -41,7 +41,7 @@ Inactive Books
 
                             <div class="card-header">
 
-                                <h4 class="card-title">Inactive Books</h4>
+                                <h4 class="card-title">Reject Books</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -88,7 +88,7 @@ Inactive Books
                                                     </td>
                                                     <td>{{$design->name}}</td>
                                                     <td class="text-truncate">
-                                                       Inactive
+                                                       Reject
                                                     </td>
                                                   
                                                     <td class="text-truncate" style="text-align: center">

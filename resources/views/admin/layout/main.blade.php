@@ -190,7 +190,7 @@ document.getElementById('logout-form').submit();">
 </li>
 <li class=""><a class="menu-item" href="{{url('admin/pending_books')}}"><i class="ft-book"></i><span data-i18n="Users View">Pending Books</span></a>
 </li>
-<li class=""><a class="menu-item" href="{{url('admin/inactive_books')}}"><i class="ft-book"></i><span data-i18n="Users View">Inactive Books</span></a>
+<li class=""><a class="menu-item" href="{{url('admin/inactive_books')}}"><i class="ft-book"></i><span data-i18n="Users View">Reject Books</span></a>
 </li>
 
 {{-- </ul>
