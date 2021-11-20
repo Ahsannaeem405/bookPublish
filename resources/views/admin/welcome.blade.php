@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="media-body text-left">
-                                        <h3 class="warning">2</h3>
+                                        <h3 class="warning">{{count($designer)}}</h3>
                                         <h6>Designers</h6>
                                     </div>
                                     <div>
@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="media-body text-left">
-                                        <h3 class="success">6</h3>
+                                        <h3 class="success">{{count($authors)}}</h3>
                                         <h6>Authors</h6>
                                     </div>
                                     <div>
@@ -162,6 +162,7 @@
                             <div class="table-responsive">
                                 <table id="new-orders-table" class="table table-hover table-xl mb-0">
                                     <thead>
+
                                         <tr>
                                             <th class="border-top-0">ID</th>
                                             <th class="border-top-0">Name</th>
@@ -171,18 +172,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @php
+                                            $i=1;
+                                        @endphp
+                                        @foreach($authors as $list)
                                         <tr>
-                                            <td class="text-truncate">1</td>
+                                            <td class="text-truncate">{{$i++}}</td>
                                             <td class="text-truncate">
-                                                David
+                                                {{$list->name}}
                                             </td>
                                             <td class="text-truncate">
-                                                davidthomus@gmail.com
+                                                {{$list->email}}
                                             </td>
-                                            <td class="text-truncate">************</td>
+                                            <td class="text-truncate">  {{$list->number}}</td>
                                         </tr>
-
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -215,16 +219,21 @@
                                     </thead>
                                     <tbody>
 
-                                        <tr>
-                                            <td class="text-truncate">1</td>
-                                            <td class="text-truncate ">
-                                                David
-                                            </td>
-                                            <td class="text-truncate">
-                                                david@gmail.com
-                                            </td>
-                                            <td class="text-truncate">************</td>
-                                        </tr>
+                                        @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach($designer as $list)
+                                    <tr>
+                                        <td class="text-truncate">{{$i++}}</td>
+                                        <td class="text-truncate">
+                                            {{$list->name}}
+                                        </td>
+                                        <td class="text-truncate">
+                                            {{$list->email}}
+                                        </td>
+                                        <td class="text-truncate">  {{$list->number}}</td>
+                                    </tr>
+                                    @endforeach
 
                                     </tbody>
                                 </table>

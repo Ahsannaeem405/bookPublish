@@ -44,7 +44,12 @@ Add Book
                     <div class="col-xl-12 col-lg-12">
 
                         <div class="card">
+                          @if (session()->has('message_success'))
+                          <div class="alert alert-success">
+                              {{ session('message_success') }}
 
+                          </div>
+                      @endif
                             <div class="card-header">
 
                                 <h4 class="card-title">Add Book</h4>
@@ -55,48 +60,47 @@ Add Book
                             <div class="card-content">
                                 <div id="new-orders" class="media-list position-relative">
                                   <div class="container">
-                                    <form action="#" method="post">
+                                    <form method="POST" action="{{ url('admin/add_book') }}" enctype="multipart/form-data">
+                                      @csrf
 
                                       <div class="row" style="padding: 10px">
                                           <div class="col-lg-12 col-12 div_input">
-
-                                            {{-- <input type="file" id="myfile" name="myfile"> --}}
-                                            <input name="file1" type="file" class="dropify" data-height="100" />
+                                            <input type="file"  name="b_file"  class="dropify" data-height="100" required/>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Book Title" required>
+                                            <input type="text"  name="b_title"  class="form-control" placeholder="Book Title" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Paper Size" required>
+                                            <input type="text"  name="b_paper"  class="form-control" placeholder="Paper Size" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Book Type" required>
+                                            <input type="text"  name="b_type"  class="form-control" placeholder="Book Type" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Paper Type" required>
+                                            <input type="text"  name="b_p_type"  class="form-control" placeholder="Paper Type" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Color" required>
+                                            <input type="text"  name="b_color"  class="form-control" placeholder="Color" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
-
-                                            <input type="text" class="form-control" placeholder="Number of copies" required>
+                                            <input type="text"  name="b_num_copy"  class="form-control" placeholder="Number of copies" required>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
+                                            @php
+                                               $designer=App\Models\User::where('role','designer')->get();
+                                            @endphp 
                                             <label for="cars">Select Designer:</label>
                                             <select name="designer" class="form-control" required>
-                                                <option value="volvo">David</option>
-                                                <option value="saab">Thomas</option>
+                                              <option value="">Select Designer</option>
 
+                                              @foreach($designer as $list)
+                                                <option value="{{$list->id}}">{{$list->name}}</option>
+                                              @endforeach
                                           </select>
                                           </div>
                                           <div class="col-lg-12 col-12 div_input">
-                                            <button class="btn btn-primary" style="float: right;"><i class="ft-check-circle"></i> Submit</button>
+                                            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">
+                                              <i class="ft-check-circle"></i> Submit</button>
                                           </div>
 
                                       </div>
@@ -113,38 +117,7 @@ Add Book
             </div>
         </div>
     </div>
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Submission</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card-body">
-
-                <button id="select-files" class="btn btn-primary mb-1 dz-clickable"><i class="ft-file"></i> Click me to select files</button>
-                <form action="#" class="dropzone dropzone-area dz-clickable" id="dpz-btn-select-files">
-                    <div class="dz-message">Drop Files Here To Upload</div>
-                </form>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a class="btn btn-danger" style="color: white" onClick="window.location.reload()">Cancel</a>
-          <button type="button" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-    <!-- END: Content-->
+   
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>

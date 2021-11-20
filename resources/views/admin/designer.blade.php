@@ -1,6 +1,6 @@
 @extends('admin//layout/main')
 @section('tittle')
-    Author
+Designer
 @endsection
 <style>
     .form {
@@ -45,10 +45,21 @@
                     <div class="col-xl-12 col-lg-12">
 
                         <div class="card">
+                            @if (session()->has('message_error'))
+                                <div class="alert alert-danger">
+                                    {{ session('message_error') }}
 
+                                </div>
+                            @endif
+                            @if (session()->has('message_success'))
+                                <div class="alert alert-success">
+                                    {{ session('message_success') }}
+
+                                </div>
+                            @endif
                             <div class="card-header">
 
-                                <h4 class="card-title">Designers</h4>
+                                <h4 class="card-title">Designer</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -74,25 +85,81 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                @php
+                    $i=1;
+                @endphp
+                @foreach ($designer as $list)
+                    <tr>
+                        <td class="text-truncate">{{$i++}}</td>
+                        <td class="text-truncate">
+                            {{ $list->name }}
+                        </td>
+                        <td class="text-truncate">
+                            {{ $list->email }}
+
+                        </td>
+                        <td class="text-truncate">{{ $list->number }}</td>
+                        <td class="text-truncate" style="text-align: center;">
+                            <button class="btn btn-primary" data-toggle="modal"
+                                data-target="#updateModal{{$list->id}}">Edit</button>
+
+                            <a href="{{url('admin/delete_Designers')}}/{{$list->id}}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+                                                    
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateModal{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Designer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{ url('admin/update_authors') }}/{{$list->id}}" method="POST">
+                        @csrf
+                        <div class="form">
+                            <input type="text" name="name" placeholder="Name" value="{{$list->name}}"  class="form-control" required>
+
+                        </div>
+                        <div class="form">
+                            <input type="email" name="email" placeholder="Email" value="{{$list->email}}" class="form-control" required>
+
+                        </div>
+                       
+                        <div class="form">
+                            <input type="text" name="number" placeholder="Number" value="{{$list->number}}"  class="form-control" required>
+
+                        </div>
+                        <div class="form">
+                            <input type="password" name="password" placeholder="Update Password" class="form-control" required>
+
+                        </div>
+                        {{-- <div class="form">
+                            <input type="password" placeholder="Confirm Password" class="form-control">
+
+                        </div> --}}
 
 
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                    <button type="submit" name="update" class="btn btn-primary">Update Designer</button>
+                </div>
+                
+            </form>
+            </div>
+        </div>
+    </div>
 
-                                                <tr>
-                                                    <td class="text-truncate">1</td>
-                                                    <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        davidthomus@gmail.com
-                                                    </td>
-                                                    <td class="text-truncate">************</td>
-                                                    <td class="text-truncate" style="text-align: center;">
-                                                       <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Edit</button>
 
-                                                       <button class="btn btn-danger">Delete</button>
-                                                    </td>
-                                                </tr>
-
+                                                @endforeach
 
                                             </tbody>
                                         </table>
@@ -107,6 +174,9 @@
             </div>
         </div>
     </div>
+
+
+    <!-- END: Content-->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -120,87 +190,41 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="" method="post">
+                    <form action="{{ url('admin/add_Designers') }}" method="POST">
+                        @csrf
                         <div class="form">
-                            <input type="email" placeholder="Email" class="form-control">
+                            <input type="text" name="name" placeholder="Name" class="form-control">
 
                         </div>
                         <div class="form">
-                            <input type="text" placeholder="Name" class="form-control">
+                            <input type="email" name="email" placeholder="Email" class="form-control">
+
+                        </div>
+
+                        <div class="form">
+                            <input type="text" name="number" placeholder="Number" class="form-control">
 
                         </div>
                         <div class="form">
-                            <input type="text" placeholder="Number" class="form-control">
+                            <input type="password" name="password" placeholder="Password" class="form-control">
 
                         </div>
                         <div class="form">
-                            <input type="password" placeholder="Password" class="form-control">
-
-                        </div>
-                        <div class="form">
-                            <input type="password" placeholder="Confirm Password" class="form-control">
+                            <input type="password" name="c_password" placeholder="Confirm Password" class="form-control">
 
                         </div>
 
-                    </form>
+
 
                 </div>
                 <div class="modal-footer">
                     {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                    <button type="button" class="btn btn-primary">Add Designer</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Add Designer</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-
-
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Update Designer</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <div class="modal-body">
-
-                 <form action="" method="post">
-                     <div class="form">
-                         <input type="email" placeholder="Email" class="form-control">
-
-                     </div>
-                     <div class="form">
-                         <input type="text" placeholder="Name" class="form-control">
-
-                     </div>
-                     <div class="form">
-                         <input type="text" placeholder="Number" class="form-control">
-
-                     </div>
-                     <div class="form">
-                         <input type="password" placeholder="Password" class="form-control">
-
-                     </div>
-                     <div class="form">
-                         <input type="password" placeholder="Confirm Password" class="form-control">
-
-                     </div>
-
-                 </form>
-
-             </div>
-             <div class="modal-footer">
-                 {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                 <button type="button" class="btn btn-primary">Update Designer</button>
-             </div>
-         </div>
-     </div>
- </div>
-    <!-- END: Content-->
-
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 @endsection

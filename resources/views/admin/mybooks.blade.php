@@ -17,31 +17,18 @@ My Books
             <div class="content-header row">
             </div>
             <div class="content-body">
-                @if (Session::has('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                        @php
-                            Session::forget('success');
-                        @endphp
-                    </div>
-                @endif
-                <!-- eCommerce statistic -->
-
-                <!--/ eCommerce statistic -->
-
-                <!-- Products sell and New Orders -->
-
                 <div class="row match-height">
-
-                    <!-- Button trigger modal -->
-
                     <div class="col-xl-12 col-lg-12">
-
                         <div class="card">
+                            @if (session()->has('message_error'))
+                            <div class="alert alert-danger">
+                                {{ session('message_error') }}
 
+                            </div>
+                        @endif
                             <div class="card-header">
 
-                                <h4 class="card-title">Published Books</h4>
+                                <h4 class="card-title">My Books</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -59,7 +46,6 @@ My Books
                                                 <tr>
                                                     <th class="border-top-0">Id</th>
                                                     <th class="border-top-0">Book Name</th>
-                                                    <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Designer Name</th>
 
 
@@ -70,19 +56,19 @@ My Books
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @php
+                                                    $i=1;
+                                                @endphp
 
-
-
+                                                @foreach( $mybook as $list)
                                                 <tr>
-                                                    <td class="text-truncate">1</td>
+                                                    <td class="text-truncate">{{$i++}}</td>
                                                     <td class="text-truncate">
-                                                        Ocean in th sea
+                                                        {{$list->b_title}}
                                                     </td>
+                                                  
                                                     <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Thomas
+                                                        {{$list->designer}}
                                                     </td>
                                                     <td class="text-truncate">
                                                         Approved
@@ -99,85 +85,14 @@ My Books
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
                                                                 <a class="dropdown-item" href="#">Download</a>
 
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a class="dropdown-item" href="{{url('admin/delete_mybooks')}}/{{$list->id}}">Delete</a>
 
                                                             </div>
                                                         </div>
 
                                                     </td>
+                                                    @endforeach
 
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-truncate">1</td>
-                                                    <td class="text-truncate">
-                                                        Ocean in th sea
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Thomas
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Approved
-                                                    </td>
-                                                    <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Download</button>
-
-                                                          <button class="btn btn-danger">Delete</button> --}}
-                                                          <div class="dropdown position-static actions d-inline-block">
-                                                            <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
-                                                                id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action
-                                                                <i class="mdi mdi-dots-horizontal"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-
-                                                                <a class="dropdown-item" href="#">Delete</a>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-truncate">1</td>
-                                                    <td class="text-truncate">
-                                                        Ocean in th sea
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Thomas
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Approved
-                                                    </td>
-                                                    <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Download</button>
-
-                                                          <button class="btn btn-danger">Delete</button> --}}
-                                                          <div class="dropdown position-static actions d-inline-block">
-                                                            <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
-                                                                id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action
-                                                                <i class="mdi mdi-dots-horizontal"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-
-                                                                <a class="dropdown-item" href="#">Delete</a>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-
-
-                                                </tr>
 
 
                                             </tbody>

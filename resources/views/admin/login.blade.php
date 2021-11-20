@@ -90,7 +90,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=submit],button, input[type=reset]  {
   background-color: #56baed;
   border: none;
   color: white;
@@ -124,7 +124,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text],input[type=email],input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -284,10 +284,23 @@ input[type=text]:placeholder {
         </div>
 
         <!-- Login Form -->
-        <form>
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-          <input type="submit" class="fadeIn fourth" value="Log In">
+        <form method="POST" action="{{ route('login') }}">
+          @csrf
+          <input type="email" name="email" id="login" class="fadeIn second  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus  placeholder="Email" >
+          @error('email')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+          <input type="password" id="password" name="password" class="fadeIn third  @error('password') is-invalid @enderror"  required autocomplete="current-password" placeholder="password">
+          @error('password')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+          <button type="submit" class="fadeIn fourth">
+            {{ __('Login') }}
+        </button>
         </form>
 
         <!-- Remind Passowrd -->

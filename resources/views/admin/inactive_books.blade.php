@@ -1,6 +1,6 @@
 @extends('admin//layout/main')
 @section('tittle')
-Published Book
+Pending Books
 @endsection
 <style>
     .form {
@@ -41,7 +41,7 @@ Published Book
 
                             <div class="card-header">
 
-                                <h4 class="card-title">Published Books</h4>
+                                <h4 class="card-title">Pending Books</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -57,13 +57,10 @@ Published Book
                                             class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-top-0">Id</th>
+                                                    <th class="border-top-0">ID</th>
                                                     <th class="border-top-0">Book Name</th>
                                                     <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Designer Name</th>
-
-
-
                                                     <th class="border-top-0">Status</th>
                                                     <th class="border-top-0">Action</th>
 
@@ -72,7 +69,7 @@ Published Book
                                             <tbody>
 
 
-
+                                                @foreach($mybook as $list)
                                                 <tr>
                                                     <td class="text-truncate">1</td>
                                                     <td class="text-truncate">
@@ -85,11 +82,10 @@ Published Book
                                                         Thomas
                                                     </td>
                                                     <td class="text-truncate">
-                                                        Approved
+                                                        Pending
                                                     </td>
                                                     <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Download</button>
-
+                                                        {{-- <button class="btn btn-success">Approve</button>
                                                           <button class="btn btn-danger">Delete</button> --}}
                                                           <div class="dropdown position-static actions d-inline-block">
                                                             <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
@@ -98,86 +94,18 @@ Published Book
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
                                                                 <a class="dropdown-item" href="#">Download</a>
+                                                                <a class="dropdown-item" href="#">Approve</a>
 
                                                                 <a class="dropdown-item" href="#">Delete</a>
 
                                                             </div>
                                                         </div>
-
-                                                    </td>
-
+                                                        </td>
 
                                                 </tr>
-                                                <tr>
-                                                    <td class="text-truncate">1</td>
-                                                    <td class="text-truncate">
-                                                        Ocean in th sea
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Thomas
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Approved
-                                                    </td>
-                                                    <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Download</button>
-
-                                                          <button class="btn btn-danger">Delete</button> --}}
-                                                          <div class="dropdown position-static actions d-inline-block">
-                                                            <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
-                                                                id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action
-                                                                <i class="mdi mdi-dots-horizontal"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-
-                                                                <a class="dropdown-item" href="#">Delete</a>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
+                                                @endforeach
 
 
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-truncate">1</td>
-                                                    <td class="text-truncate">
-                                                        Ocean in th sea
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        David
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Thomas
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        Approved
-                                                    </td>
-                                                    <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Download</button>
-
-                                                          <button class="btn btn-danger">Delete</button> --}}
-                                                          <div class="dropdown position-static actions d-inline-block">
-                                                            <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
-                                                                id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action
-                                                                <i class="mdi mdi-dots-horizontal"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-
-                                                                <a class="dropdown-item" href="#">Delete</a>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-
-
-                                                </tr>
 
 
                                             </tbody>

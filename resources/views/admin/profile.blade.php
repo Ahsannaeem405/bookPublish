@@ -18,14 +18,18 @@ Submission
         <div class="content-header row">
         </div>
         <div class="content-body">
-            @if (Session::has('success'))
+            @if (Session::has('message_success'))
                 <div class="alert alert-success">
-                    {{ Session::get('success') }}
-                    @php
-                        Session::forget('success');
-                    @endphp
+                    {{ Session::get('message_success') }}
+                   
                 </div>
             @endif
+            @if (Session::has('message_error'))
+            <div class="alert alert-danger">
+                {{ Session::get('message_error') }}
+               
+            </div>
+        @endif
             <!-- eCommerce statistic -->
 
             <!--/ eCommerce statistic -->
@@ -52,46 +56,70 @@ Submission
                             </div>
                         </div>
                         <div class="card-content">
+                            <form method="POST" action="{{ url('admin/update_profile') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id"  class="form-control" value="{{$user_data->id}}">
                             <div id="new-orders" class="media-list position-relative">
                                 <div class="container con1">
                                     <div class="row">
                                         <div class="col-lg-12 col-12" style="text-align: center;">
-                                            <img src="{{asset('upload/images/img_avatar.png')}}" class=" img">
+                                            <img src="{{asset('profile')}}/{{$user_data->image}}" class=" img">
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label >Name:</label>
-                                            <input type="text" class="form-control" placeholder="Name">
+                                            <input type="text" name="name"  class="form-control" value="{{$user_data->name}}" placeholder="Name">
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Email:</label>
 
-                                            <input type="text" class="form-control" placeholder="Mobile Number">
+                                            <input type="email" name="email" class="form-control"  value="{{$user_data->email}}" placeholder="Mobile Number">
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Phone Number:</label>
 
-                                            <input type="text" class="form-control" placeholder="Phone Number">
+                                            <input type="text" name="number"  value="{{$user_data->number}}" class="form-control" placeholder="Phone Number">
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
+                                            <label>Old Password:</label>
+
+                                            <input type="password" name="old_password" class="form-control" placeholder="Password">
+                                            @if ($errors->has('old_password'))
+                                            <span class="text-danger">{{ $errors->first('old_password') }}</span>
+                                        @endif
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Password:</label>
 
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" name="password" class="form-control" placeholder="Password">
+                                            @if ($errors->has('password'))
+                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
                                         </div>
+                                     
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Confirm Password:</label>
 
-                                            <input type="password" class="form-control" placeholder="Confirm Password">
+                                            <input type="password" name="c_password" class="form-control" placeholder="Confirm Password">
+                                            @if ($errors->has('c_password'))
+                                            <span class="text-danger">{{ $errors->first('c_password') }}</span>
+                                        @endif
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
+                                            <label>Image:</label>
+
+                                            <input type="file" name="image" class="form-control">
                                         </div>
                                         <div class="col-lg-12  col-12" style="padding:20px">
 
 
-                                            <button class="btn btn-primary" style="float: right;">Update</button>
+                                            <button type="submit" name="submit" class="btn btn-primary" style="float: right;">Update</button>
                                          </div>
 
                                     </div>
                                 </div>
 
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
