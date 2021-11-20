@@ -12,7 +12,10 @@ use App\Http\Controllers\BookPublishController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('migrate', function () {
+    Artisan::call('migrate:refresh');
+    Artisan::call('db:seed');
+});
 Route::get('/', function () {
     return view('admin.login');
 });
