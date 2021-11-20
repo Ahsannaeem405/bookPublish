@@ -44,12 +44,10 @@ My Books
                                             class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-top-0">Id</th>
+                                                    <th class="border-top-0">ID</th>
                                                     <th class="border-top-0">Book Name</th>
+                                                    <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Designer Name</th>
-
-
-
                                                     <th class="border-top-0">Status</th>
                                                     <th class="border-top-0">Action</th>
 
@@ -66,13 +64,25 @@ My Books
                                                     <td class="text-truncate">
                                                         {{$list->b_title}}
                                                     </td>
-                                                  
                                                     <td class="text-truncate">
-                                                        {{$list->designer}}
+                                                        @php
+                                                            $auth=App\Models\User::find($list->user_id);
+                                                            $design=App\Models\User::find($list->designer);
+                                                        
+                                                        @endphp
+                                                        {{$auth->name}}
                                                     </td>
+                                                    <td>{{$design->name}}</td>
                                                     <td class="text-truncate">
+                                                        @if($list->status =='')
+                                                        Pendding
+                                                        @elseif($list->status ==0)
+                                                        disapprove
+                                                        @else
                                                         Approved
+                                                        @endif 
                                                     </td>
+                                                  
                                                     <td class="text-truncate" style="text-align: center">
                                                         {{-- <button class="btn btn-success">Download</button>
 
@@ -83,14 +93,15 @@ My Books
                                                                 <i class="mdi mdi-dots-horizontal"></i>
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-
+                                                                <a href="{{$list->b_file}}" download="{{$list->b_file}}" class="dropdown-item"  >Book Download</a>
                                                                 <a class="dropdown-item" href="{{url('admin/delete_mybooks')}}/{{$list->id}}">Delete</a>
 
                                                             </div>
                                                         </div>
 
                                                     </td>
+
+                                                </tr>
                                                     @endforeach
 
 

@@ -70,22 +70,28 @@ Pending Books
 
 
                                                 @foreach($mybook as $list)
+                                               
                                                 <tr>
-                                                    <td class="text-truncate">1</td>
+                                                    <td class="text-truncate">{{$i++}}</td>
                                                     <td class="text-truncate">
-                                                        Ocean in th sea
+                                                        {{$list->b_title}}
                                                     </td>
                                                     <td class="text-truncate">
-                                                        David
+                                                        @php
+                                                            $auth=App\Models\User::find($list->user_id);
+                                                            $design=App\Models\User::find($list->designer);
+                                                        
+                                                        @endphp
+                                                        {{$auth->name}}
                                                     </td>
+                                                    <td>{{$design->name}}</td>
                                                     <td class="text-truncate">
-                                                        Thomas
+                                                      Pending
                                                     </td>
-                                                    <td class="text-truncate">
-                                                        Pending
-                                                    </td>
+                                                  
                                                     <td class="text-truncate" style="text-align: center">
-                                                        {{-- <button class="btn btn-success">Approve</button>
+                                                        {{-- <button class="btn btn-success">Download</button>
+
                                                           <button class="btn btn-danger">Delete</button> --}}
                                                           <div class="dropdown position-static actions d-inline-block">
                                                             <button class="btn btn-primary dropdown-toggle actions-btn" type="button"
@@ -93,14 +99,13 @@ Pending Books
                                                                 <i class="mdi mdi-dots-horizontal"></i>
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a class="dropdown-item" href="#">Download</a>
-                                                                <a class="dropdown-item" href="#">Approve</a>
-
-                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                                <a href="{{$list->b_file}}" download="{{$list->b_file}}" class="dropdown-item"  >Book Download</a>
+                                                                <a class="dropdown-item" href="{{url('admin/delete_mybooks')}}/{{$list->id}}">Delete</a>
 
                                                             </div>
                                                         </div>
-                                                        </td>
+
+                                                    </td>
 
                                                 </tr>
                                                 @endforeach
