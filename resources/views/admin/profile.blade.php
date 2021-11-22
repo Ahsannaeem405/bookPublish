@@ -82,7 +82,7 @@ Submission
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Old Password:</label>
 
-                                            <input type="password" name="old_password" class="form-control" placeholder="Password">
+                                            <input type="password" name="old_password" class="form-control" placeholder="Old Password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
                                             @if ($errors->has('old_password'))
                                             <span class="text-danger">{{ $errors->first('old_password') }}</span>
                                         @endif
@@ -90,7 +90,7 @@ Submission
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Password:</label>
 
-                                            <input type="password" name="password" class="form-control" placeholder="Password">
+                                            <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
                                             @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
@@ -99,7 +99,7 @@ Submission
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Confirm Password:</label>
 
-                                            <input type="password" name="c_password" class="form-control" placeholder="Confirm Password">
+                                            <input type="password" name="c_password" class="form-control" placeholder="Confirm Password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" >
                                             @if ($errors->has('c_password'))
                                             <span class="text-danger">{{ $errors->first('c_password') }}</span>
                                         @endif

@@ -92,7 +92,11 @@ min-height: 200px !important;
                                                         {{$list->b_type}}
                                                     </td>
                                                     <td class="text-truncate">
-                                                        Pending
+                                                     @if($list->design_image == null)
+                                                     Pending
+                                                     @else
+                                                     Success
+                                                     @endif
                                                     </td>
                                                     <td class="text-truncate" style="text-align: center">
                                                         <a href="{{$list->b_file}}" download="{{$list->b_file}}"  class="btn btn-success">Book Download</a>

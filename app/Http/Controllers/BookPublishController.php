@@ -10,8 +10,20 @@ class BookPublishController extends Controller
 {
     public function index()
     {
+
+        /////////////////////////admin panel/////////////////////////
         $user['authors']=User::where('role','author')->get();
         $user['designer']=User::where('role','designer')->get();
+        $user['publish']=Book::where('status','1')->get();
+         /////////////////////////author panel/////////////////////////
+         $user_id=Auth::user()->id;
+        
+         $user['author_book']=Book::where('user_id',$user_id)->get();
+        //  dd($user['author_book']);
+          /////////////////////////designer panel/////////////////////////
+          $user['design_book_pending']=Book::where('designer',$user_id)->where('design_image',null)->count();
+          $user['design_book_publish']=Book::where('designer',$user_id)->where('design_image','!=',null)->count();
+          $user['design_book']=Book::where('designer',$user_id)->count();
         return view('admin.welcome',$user);
     }
     public function authors()
@@ -150,6 +162,7 @@ class BookPublishController extends Controller
         $books->b_color=$request->b_color;
         $books->b_num_copy=$request->b_num_copy;
         $books->designer=$request->designer;
+        $books->design_image=null;
         if(isset($request->b_file))
         {
         $image=$request->file('b_file');

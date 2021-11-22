@@ -75,10 +75,7 @@
                                                     <th class="border-top-0">Book Name</th>
                                                     <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Book Type</th>
-
-
-
-                                                    <th class="border-top-0">Design File</th>
+                                                    <th class="border-top-0">Status</th>
                                                     <th class="border-top-0">Action</th>
 
                                                 </tr>
@@ -106,7 +103,11 @@
                                                             {{ $list->b_type }}
                                                         </td>
                                                         <td class="text-truncate">
-                                                            {{ $list->design_image }}
+                                                            @if($list->design_image == null)
+                                                            Pending
+                                                            @else
+                                                            Success
+                                                            @endif
                                                         </td>
                                                         <td class="text-truncate" style="text-align: center">
                                                             <a href="{{ $list->design_image }}"
