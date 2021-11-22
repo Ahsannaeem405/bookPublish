@@ -65,7 +65,7 @@ Add Book
 
                                       <div class="row" style="padding: 10px">
                                           <div class="col-lg-12 col-12 div_input">
-                                            <input type="file"  name="b_file"  class="dropify" data-height="100" required/>
+                                            <input type="file"  name="b_file"  class="dropify" data-height="100" accept=".pdf,.txt,.docx" required/>
                                           </div>
                                           <div class="col-lg-6 col-12 div_input">
                                             <input type="text"  name="b_title"  class="form-control" placeholder="Book Title" required>

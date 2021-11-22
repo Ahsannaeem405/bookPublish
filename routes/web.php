@@ -25,9 +25,12 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/',[BookPublishController::class,'index']);
     Route::get('books',[BookPublishController::class,'books']);
+    Route::get('ready_publish',[BookPublishController::class,'ready_publish']);
     Route::get('approval_books',[BookPublishController::class,'approval_books']);
     Route::get('book_status_approve/{id}',[BookPublishController::class,'book_status_approve']);
 Route::get('book_status_disapprove/{id}',[BookPublishController::class,'book_status_disapprove']);
+Route::get('proof_read_approval/{id}',[BookPublishController::class,'proof_read_approval']);
+Route::get('proof_read_error/{id}',[BookPublishController::class,'proof_read_error']);
    // Route::view('/authors', 'admin.author');
    //Route::view('/profile', 'admin.profile');
    //////////////////////profile update/////////////////

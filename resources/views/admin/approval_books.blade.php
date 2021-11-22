@@ -49,6 +49,12 @@ min-height: 200px !important;
             
                             </div>
                         @endif
+                        @if (session()->has('message_error'))
+                        <div class="alert alert-danger">
+                            {{ session('message_error') }}
+        
+                        </div>
+                    @endif
                             <div class="card-header">
 
                                 <h4 class="card-title">Designer Books</h4>
@@ -71,8 +77,8 @@ min-height: 200px !important;
                                                     <th class="border-top-0">Book Name</th>
                                                     <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Designer Name</th>
-                                                    {{-- <th class="border-top-0">Book Type</th> --}}
-                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Publishing status</th>
+                                                    <th class="border-top-0">Proof read status</th>
                                                     <th class="border-top-0">Action</th>
 
                                                 </tr>
@@ -98,43 +104,60 @@ min-height: 200px !important;
                                                         {{$auth->name}}
                                                     </td>
                                                     <td>{{$design->name}}</td>
-                                                    {{-- <td class="text-truncate">
-                                                        {{$list->b_type}}
-                                                    </td> --}}
-                                                    <td class="text-truncate">
-                                                        @if($list->status =='')
-                                                        Pendding
-                                                        @elseif($list->status ==0)
-                                                        disapprove
+                                             
+                                                    
+                                                    <td> @if($list->proof_status == 1)
+                                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{$list->id}}" style="float: right;">Ready for publish</button>
                                                         @else
-                                                        Approved
-                                                        @endif   
+                                                        <button type="button" class="btn btn-primary btn-sm" title="Please select proof status">Ready for publish</button>
+                                                        @endif</td>
+                                                    <td class="text-truncate" style="text-align: center">
+                                                        <div class="dropdown position-static actions d-inline-block">
+                                                            <button class="btn btn-primary dropdown-toggle actions-btn btn-sm" type="button"
+                                                                id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proof read status
+                                                                <i class="mdi mdi-dots-horizontal"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="table-action" >
+                                                                <a href="{{url('admin/proof_read_approval')}}/{{$list->id}}"  class="dropdown-item"  >Proof read approval</a>
+                                                                <a href="{{url('admin/proof_read_error')}}/{{$list->id}}" class="dropdown-item"  >Proof read error</a>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td class="text-truncate" style="text-align: center">
-                                                        @if($list->status != 0 && $list->status !='')
-                                                            <a class="btn btn-warning btn-sm text-white"   href="{{url('admin/book_status_disapprove')}}/{{$list->id}}">Disapprove</a>   
-                                                        @else
-                                                            <a class="btn btn-success btn-sm text-white"  href="{{url('admin/book_status_approve')}}/{{$list->id}}">Approve</a>   
-                                                        @endif   
-                                                        {{-- <button class="btn btn-success">Download</button>
-
-                                                          <button class="btn btn-danger">Delete</button> --}}
+                                                       
+                                                       
                                                           <div class="dropdown position-static actions d-inline-block">
                                                             <button class="btn btn-primary dropdown-toggle actions-btn btn-sm" type="button"
                                                                 id="table-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action
                                                                 <i class="mdi mdi-dots-horizontal"></i>
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a href="{{$list->b_file}}" download="{{$list->b_file}}" class="dropdown-item"  >Book Download</a>
-                                                                <a href="{{$list->design_image}}" download="{{$list->design_image}}" class="dropdown-item"  >Design Download</a>
+                                                                <a href="{{$list->b_file}}" download="{{$list->b_file}}" class="dropdown-item"  >Download Book</a>
+                                                                <a href="{{$list->design_image}}" download="{{$list->design_image}}" class="dropdown-item"  >Download Cover Image</a>
                                                                 <a class="dropdown-item" href="{{url('admin/delete_mybooks')}}/{{$list->id}}">Delete</a>
-
                                                             </div>
                                                         </div>
-
                                                     </td>
-
                                                 </tr>
+                                                <div class="modal fade" id="exampleModal{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="exampleModalLabel">Book Publish</h5>
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h1>Ready for publish Book</h1>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-danger btn-sm" style="color: white" onClick="window.location.reload()">Cancel</a>
+                                                            <a class="btn btn-success btn-sm text-white"  href="{{url('admin/book_status_approve')}}/{{$list->id}}">Confirm</a>   
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
                                                 @endforeach
 
                                             </tbody>
@@ -151,26 +174,7 @@ min-height: 200px !important;
         </div>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Submission</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <input name="file1" type="file" class="dropify" data-height="100" />
 
-        </div>
-        <div class="modal-footer">
-            <a class="btn btn-danger" style="color: white" onClick="window.location.reload()">Cancel</a>
-          <button type="button" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 

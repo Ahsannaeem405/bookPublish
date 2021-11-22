@@ -95,42 +95,48 @@
 
 
 <ul class="nav navbar-nav float-right">
-{{-- <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
+<li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
 
 <span class="badge badge-pill badge-danger badge-up badge-glow">
-
-1
-
+    @php
+            $total_book=App\Models\Book::orderby('id','DESC')->limit(4)->get();
+            $not_book=count($total_book);
+    @endphp
+    
+{{$not_book}}
 </span>
-
-
 </a>
-
 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-
-{{-- <li class="dropdown-menu-header">
+<li class="dropdown-menu-header">
 <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6><span class="notification-tag badge badge-danger float-right m-0"> New </span>
-</li> --}}
+</li>
+@foreach($total_book as $list)
+@php
+$auth=App\Models\User::find($list->user_id);
+$design=App\Models\User::find($list->designer);
 
-{{-- <li class="scrollable-container media-list w-100 ps">
+@endphp
+ <li class="scrollable-container media-list w-100 ps">
 <a href="{{url('admins/user')}}">
 <div class="media">
-<div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>
+<div class="media-left align-self-center"><img src="{{asset('profile')}}/{{$auth->image}}" with="50" height="50" class=" img-circle bg-cyan mr-0"></div>
 <div class="media-body">
-<h6 class="media-heading">New User!</h6>
-<p class="notification-text font-small-3 text-muted">name waiting for your approval</p>
+<h6 class="media-heading">{{$auth->name}}</h6>
+<p class="notification-text font-small-3 text-muted">{{$list->b_title}}</p>
 </div>
 </div>
 </a>
 </li> 
+@endforeach
 
-
-<li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"  href="{{url('admins/user')}}">Read all notifications</a></li>
+<li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"  href="#">Read all notifications</a></li>
 
 
 
 </ul>
-</li> --}}
+</li>
+
+
 <li class="dropdown dropdown-user nav-item">
     <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
     <span class="mr-1 user-name text-bold-700">{{Auth::user()->name}}</span>
@@ -174,7 +180,9 @@ document.getElementById('logout-form').submit();">
 </li>
 <li class=""><a class="menu-item" href="{{url('admin/books')}}"><i class="ft-book"></i><span data-i18n="Users View">All Books</span></a>
 </li>
-<li class=""><a class="menu-item" href="{{url('admin/approval_books')}}"><i class="ft-book"></i><span data-i18n="Users View">Waiting for approval</span></a>
+<li class=""><a class="menu-item" href="{{url('admin/approval_books')}}"><i class="ft-book"></i><span data-i18n="Users View">Pending for proof ready</span></a>
+</li>
+<li class=""><a class="menu-item" href="{{url('admin/ready_publish')}}"><i class="ft-book"></i><span data-i18n="Users View">Ready for publish</span></a>
 </li>
 
 @endif

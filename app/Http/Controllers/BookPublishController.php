@@ -12,6 +12,7 @@ class BookPublishController extends Controller
     {
 
         /////////////////////////admin panel/////////////////////////
+    
         $user['authors']=User::where('role','author')->get();
         $user['designer']=User::where('role','designer')->get();
         $user['publish']=Book::where('status','1')->get();
@@ -261,6 +262,14 @@ class BookPublishController extends Controller
  
         return view(' admin.books', $designer_book);
     }
+    public function ready_publish(Request $request)
+    {
+
+        $designer_id=Auth::user()->id;
+        $designer_book['mybook']=Book::where('proof_status','1')->where('status','1')->get();
+ 
+        return view(' admin.ready_publish', $designer_book);
+    }
     ///////////////////////designer_book///////////////////////////////////
     public function designer_book(Request $request)
     {
@@ -312,15 +321,15 @@ class BookPublishController extends Controller
         return view(' admin.approval_books', $designer_book);
     }
 
-    public function book_status_disapprove(Request $request ,$id)
-    {
-       //dd(1);
-      $book_id=$id;
-      $book_status = Book::find($book_id);
-     $book_status->status='0';
-     $book_status->update();
-      return redirect()->back()->with('message_success','Book Inactive!'); 
-    }
+    // public function book_status_disapprove(Request $request ,$id)
+    // {
+    //    //dd(1);
+    //   $book_id=$id;
+    //   $book_status = Book::find($book_id);
+    //  $book_status->status='0';
+    //  $book_status->update();
+    //   return redirect()->back()->with('message_success','Book Inactive!'); 
+    // }
     public function book_status_approve(Request $request ,$id)
     {
        //dd(2);
@@ -353,4 +362,24 @@ class BookPublishController extends Controller
  
         return view(' admin.approve_books', $designer_book);
     }
+
+    public function proof_read_approval(Request $request ,$id)
+    {
+       //dd(2);
+       $book_id=$id;
+       $book_status = Book::find($book_id);
+      $book_status->proof_status='1';
+      $book_status->update();
+      return redirect()->back()->with('message_success','Book proof read approval!'); 
+    }
+    public function proof_read_error(Request $request ,$id)
+    {
+       //dd(2);
+       $book_id=$id;
+       $book_status = Book::find($book_id);
+      $book_status->proof_status='0';
+      $book_status->update();
+      return redirect()->back()->with('message_error','Book proof read rrror!'); 
+    }
+
 }

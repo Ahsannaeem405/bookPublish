@@ -26,6 +26,7 @@ class CreateBooksTable extends Migration
             $table->string('design_image')->nullable();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status')->nullable();
+            $table->string('proof_status')->nullable();
             $table->timestamps();
         });
     }
