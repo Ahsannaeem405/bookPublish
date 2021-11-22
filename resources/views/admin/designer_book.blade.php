@@ -1,23 +1,25 @@
 @extends('admin//layout/main')
 @section('tittle')
-Designer Books
+    Designer Books
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 {{-- <link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/plugins/file-uploaders/dropzone.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app_asset/css/pages/dropzone.css')}}"> --}}
 <style>
     .form {
         padding: 10px;
     }
-    .dropzone{
-min-height: 200px !important;
+
+    .dropzone {
+        min-height: 200px !important;
     }
+
     .dropzone .dz-message {
-    text-align: center;
-    margin: -2em 0 !important;
-}
+        text-align: center;
+        margin: -2em 0 !important;
+    }
 
 </style>
 
@@ -83,36 +85,37 @@ min-height: 200px !important;
                                             </thead>
                                             <tbody>
                                                 @php
-                                                $i=1;
-                                            @endphp
-                                                @foreach($mybook as $list)
+                                                    $i = 1;
+                                                @endphp
+                                                @foreach ($mybook as $list)
 
 
-                                                <tr>
-                                                    <td class="text-truncate">{{$i++}}</td>
-                                                    <td class="text-truncate">
-                                                        {{$list->b_title}}
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        @php
-                                                            $auth=App\Models\User::find($list->user_id);
-                                                        
-                                                        @endphp
-                                                        {{$auth->name}}
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        {{$list->b_type}}
-                                                    </td>
-                                                    <td class="text-truncate">
-                                                        {{$list->design_image}}
-                                                    </td>
-                                                    <td class="text-truncate" style="text-align: center">
-                                                        <a href="{{$list->design_image}}" download="{{$list->design_image}}"  class="btn btn-success">Design Download</a>
+                                                    <tr>
+                                                        <td class="text-truncate">{{ $i++ }}</td>
+                                                        <td class="text-truncate">
+                                                            {{ $list->b_title }}
+                                                        </td>
+                                                        <td class="text-truncate">
+                                                            @php
+                                                                $auth = App\Models\User::find($list->user_id);
+                                                                
+                                                            @endphp
+                                                            {{ $auth->name }}
+                                                        </td>
+                                                        <td class="text-truncate">
+                                                            {{ $list->b_type }}
+                                                        </td>
+                                                        <td class="text-truncate">
+                                                            {{ $list->design_image }}
+                                                        </td>
+                                                        <td class="text-truncate" style="text-align: center">
+                                                            <a href="{{ $list->design_image }}"
+                                                                download="{{ $list->design_image }}"
+                                                                class="btn btn-success">Design Download</a>
 
 
                                                         </td>
-
-                                                </tr>
+                                                    </tr>
                                                 @endforeach
 
                                             </tbody>
@@ -128,7 +131,7 @@ min-height: 200px !important;
             </div>
         </div>
     </div>
-  
+
     <!-- END: Content-->
 
     <div class="sidenav-overlay"></div>
