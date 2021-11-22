@@ -77,7 +77,7 @@
 <div class="navbar-header">
 <ul class="nav navbar-nav flex-row">
 <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-<li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('admin/')}}"><img class="brand-logo" alt="logo" src="{{asset('logo.png')}}" style="width:100%;">
+<li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('profile/AdminLTELogo.png')}}"><img class="brand-logo" alt="logo" src="{{asset('logo.png')}}" style="width:100%;">
 
 </a></li>
 
