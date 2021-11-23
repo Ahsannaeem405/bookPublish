@@ -197,7 +197,7 @@ document.getElementById('logout-form').submit();">
 <div class="main-menu-content">
 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-<li class="nav-item"><a href="{{url('profile/AdminLTELogo.png')}}"><i class="la la-th-large"></i>
+<li class="nav-item"><a href="{{url('admin/welcome')}}"><i class="la la-th-large"></i>
     <span class="menu-title" data-i18n="Shop">Dashboard</span></a>
 </li>
 @if(Auth::user()->role == 'admin')
