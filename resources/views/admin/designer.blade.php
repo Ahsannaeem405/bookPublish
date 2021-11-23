@@ -122,7 +122,7 @@ Designer
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{ url('admin/update_authors') }}/{{$list->id}}" method="POST">
+                    <form action="{{ url('admin/update_Designers') }}/{{$list->id}}" method="POST">
                         @csrf
                         <div class="form">
                             <input type="text" name="name" placeholder="Name" value="{{$list->name}}"  class="form-control" required>

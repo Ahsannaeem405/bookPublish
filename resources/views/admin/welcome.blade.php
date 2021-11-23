@@ -21,8 +21,8 @@
                                     @endif
                                     @if(Auth::user()->role == 'author')
                                     <div class="media-body text-left">
-                                        <h3 class="warning">{{count($designer)}}</h3>
-                                        <h6>Designers</h6>
+                                        <h3 class="warning">{{count($author_book)}}</h3>
+                                        <h6>Books</h6>
                                     </div>
                                     @endif
                                     @if(Auth::user()->role == 'designer')
@@ -57,8 +57,8 @@
                                     @endif
                                     @if(Auth::user()->role == 'author')
                                     <div class="media-body text-left">
-                                        <h3 class="success">{{count($authors)}}</h3>
-                                        <h6>Authors</h6>
+                                        <h3 class="success">{{count($author_book_pending)}}</h3>
+                                        <h6>Pending Books</h6>
                                     </div>
                                     @endif
                                     @if(Auth::user()->role == 'designer')
@@ -92,7 +92,7 @@
                                     @endif
                                     @if(Auth::user()->role == 'author')
                                     <div class="media-body text-left">
-                                        <h3 class="danger">{{count($publish)}}</h3>
+                                        <h3 class="danger">{{count($author_book_publish)}}</h3>
                                         <h6>Book Published</h6>
                                     </div>
                                     @endif

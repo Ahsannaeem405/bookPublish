@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en-US" class="no-js no-svg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.min.js?ver=5.7.1' id='download-files-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-constants.js?ver=5.7.1' id='bbcrm-constants-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/galleria-1.4.2.min.js?ver=5.7.1' id='galleria-1.4.2.min-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/galleria.classic.min.js?ver=5.7.1' id='galleria.classic.min-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jSignature/2.1.2/jSignature.min.noconflict.js?ver=5.7.1' id='jsignature-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-main.js?ver=5.7.1' id='bbcrm-main-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-buyer-profile.js?ver=5.7.1' id='bbcrm-buyer-profile-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-contact-form.js?ver=5.7.1' id='bbcrm-contact-form-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-library.js?ver=5.7.1' id='bbcrm-library-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-listing.js?ver=5.7.1' id='bbcrm-listing-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-password-reset.js?ver=5.7.1' id='bbcrm-password-reset-js'></script>
+<script type='text/javascript' src='//api1.verticacrm.com/bbcrm-assets/js-noconflict/bbcrm-search-tool.js?ver=5.7.1' id='bbcrm-search-tool-js'></script>
+
+<style>
+.navbar-nav {
+ display: none;
+}
+.bbcrm_loginBar {
+ display: block !important; 
+}
+.bbcrm-footer{
+display: none !important;
+}
+</style>
+
+
+
+
+  <style>
+
+        /* BASIC */
+
+        html {
+            background-color:white;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            height: 100vh;
+        }
+
+        a {
+            color: #92badd;
+            display:inline-block;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display:inline-block;
+            margin: 40px 8px 10px 8px;
+            color: #cccccc;
+        }
+
+
+
+        /* STRUCTURE */
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            /*width: 100%;*/
+            min-height: 100%;
+            padding: 20px;
+        }
+
+        #formContent {
+            -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+            border-top: 3px solid #77C3EB;
+            background: #fff;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            padding: 0px;
+            -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+            box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        #formFooter {
+            background-color: #f6f6f6;
+            border-top: 1px solid #dce8f1;
+            padding: 25px;
+            text-align: center;
+            -webkit-border-radius: 0 0 10px 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+
+
+        /* TABS */
+
+        h2.inactive {
+            color: #cccccc;
+        }
+
+        h2.active {
+            color: #0d0d0d;
+            border-bottom: 2px solid #5fbae9;
+        }
+
+
+
+        /* FORM TYPOGRAPHY*/
+
+        button[type=button], button[type=submit], input[type=reset]  {
+            background-color: #56baed !important;
+            border: none !important;
+            color: white !important;
+            padding: 13px 40px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            text-transform: uppercase !important;
+            font-size:21px !important;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4) !important;
+            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4) !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            border-radius: 5px 5px 5px 5px !important;
+            margin: 5px 20px 20px 20px !important;
+            -webkit-transition: all 0.3s ease-in-out !important;
+            -moz-transition: all 0.3s ease-in-out !important;
+            -ms-transition: all 0.3s ease-in-out !important;
+            -o-transition: all 0.3s ease-in-out !important;
+            transition: all 0.3s ease-in-out !important;
+            margin-top: 20px !important;
+        }
+
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+            background-color: #39ace7 !important;
+        }
+
+        input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+            -moz-transform: scale(0.95) !important;
+            -webkit-transform: scale(0.95) !important;
+            -o-transform: scale(0.95) !important;
+            -ms-transform: scale(0.95) !important;
+            transform: scale(0.95) !important;
+        }
+
+        input[type=email] {
+            background-color: #f6f6f6 !important;
+            border: none !important;
+            color: #0d0d0d !important;
+           padding: 15px 14px !important;
+
+            text-decoration: none !important;
+            display: inline-block !important;
+            font-size:21px !important;
+            margin: 5px !important;
+            width: 85% !important;
+            height: 43px !important;
+            border: 2px solid #f6f6f6 !important;
+            -webkit-transition: all 0.5s ease-in-out !important;
+            -moz-transition: all 0.5s ease-in-out !important;
+            -ms-transition: all 0.5s ease-in-out !important;
+            -o-transition: all 0.5s ease-in-out !important;
+            transition: all 0.5s ease-in-out !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            border-radius: 5px 5px 5px 5px !important;
+        }
+
+        input[type=email]:focus {
+            background-color: #fff !important;
+            border-bottom: 2px solid #5fbae9 !important;
+        }
+
+        input[type=email]:placeholder {
+            color: #cccccc !important;
+        }
+             input[type=password] {
+            background-color: #f6f6f6 !important;
+            border: none !important;
+            color: #0d0d0d !important;
+            padding: 15px 14px !important;
+
+            text-decoration: none !important;
+            display: inline-block !important;
+            font-size:21px !important;
+            margin: 5px !important;
+            width: 85% !important;
+            height: 43px !important;
+            border: 2px solid #f6f6f6 !important;
+            -webkit-transition: all 0.5s ease-in-out !important;
+            -moz-transition: all 0.5s ease-in-out !important;
+            -ms-transition: all 0.5s ease-in-out !important;
+            -o-transition: all 0.5s ease-in-out !important;
+            transition: all 0.5s ease-in-out  !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            border-radius: 5px 5px 5px 5px !important;
+        }
+      input[type=password]:focus {
+            background-color: #fff !important;
+            border-bottom: 2px solid #5fbae9 !important;
+        }
+
+        input[type=password]:placeholder {
+            color: #cccccc !important;
+        }
+
+
+        /* ANIMATIONS */
+
+        /* Simple CSS3 Fade-in-down Animation */
+        .fadeInDown {
+            -webkit-animation-name: fadeInDown ;
+            animation-name: fadeInDown ;
+            -webkit-animation-duration: 1s ;
+            animation-duration: 1s ;
+            -webkit-animation-fill-mode: both ;
+            animation-fill-mode: both ;
+        }
+
+        @-webkit-keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        /* Simple CSS3 Fade-in Animation */
+        @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+        .fadeIn {
+            opacity:0;
+            -webkit-animation:fadeIn ease-in 1;
+            -moz-animation:fadeIn ease-in 1;
+            animation:fadeIn ease-in 1;
+
+            -webkit-animation-fill-mode:forwards;
+            -moz-animation-fill-mode:forwards;
+            animation-fill-mode:forwards;
+
+            -webkit-animation-duration:1s;
+            -moz-animation-duration:1s;
+            animation-duration:1s;
+        }
+
+        .fadeIn.first {
+            -webkit-animation-delay: 0.4s;
+            -moz-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+        .fadeIn.second {
+            -webkit-animation-delay: 0.6s;
+            -moz-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+        }
+
+        .fadeIn.third {
+            -webkit-animation-delay: 0.8s;
+            -moz-animation-delay: 0.8s;
+            animation-delay: 0.8s;
+        }
+
+        .fadeIn.fourth {
+            -webkit-animation-delay: 1s;
+            -moz-animation-delay: 1s;
+            animation-delay: 1s;
+        }
+
+        /* Simple CSS3 Fade-in Animation */
+        .underlineHover:after {
+            display: block;
+            left: 0;
+            bottom: -10px;
+            width: 0;
+            height: 2px;
+            background-color: #56baed;
+            content: "";
+            transition: width 0.2s;
+        }
+
+        .underlineHover:hover {
+            color: #0d0d0d;
+        }
+
+        .underlineHover:hover:after{
+            width: 100%;
+        }
+
+
+
+        /* OTHERS */
+
+        *:focus {
+            outline: none;
+        }
+
+        #icon {
+            width:28%;
+
+        }
+        
+        #email-loginbar {
+        		margin: 0px !important;
+                padding: 0px !important;
+                padding-left: 10px !important;
+        }
+        
+        
+        #password-loginbar {
+        		margin: 0px !important;
+                padding: 0px !important;
+                padding-left: 10px !important;
+                margin-top: 10px !important;
+        }
+        .danger{
+            color:red;
+          
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first" style="margin-top:2px;
+    margin-bottom: 14px;">
+            <img src="assets/images/user.webp" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- Login Form -->
+<form class="bbcrm_loginBar navbar-form"  method="POST" style="display: none">
+       <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="email-loginbar" type="email" class="form-control" name="email" value="" placeholder="Email Address">                                        
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="password-loginbar" type="password" class="form-control" name="password" value="" placeholder="Password" required="">                                        
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-primary">Login</button>
+            </form>
+        <span class="danger"> </span>
+            <br>
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" style="text-decoration: none;" href="register.php">Register?</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>

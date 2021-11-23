@@ -106,8 +106,8 @@ min-height: 200px !important;
                                                     <td>{{$design->name}}</td>
                                              
                                                     
-                                                    <td> @if($list->proof_status == 1)
-                                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{$list->id}}" style="float: right;">Ready for publish</button>
+                                                    <td style="text-align: center"> @if($list->proof_status == 1)
+                                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{$list->id}}">Ready for publish</button>
                                                         @else
                                                         <button type="button" class="btn btn-primary btn-sm" title="Please select proof status">Ready for publish</button>
                                                         @endif</td>
@@ -149,7 +149,7 @@ min-height: 200px !important;
                                                           </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h1>Ready for publish Book</h1>
+                                                            <h1>Ready for publish Book Approval</h1>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a class="btn btn-danger btn-sm" style="color: white" onClick="window.location.reload()">Cancel</a>

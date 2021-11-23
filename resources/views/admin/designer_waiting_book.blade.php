@@ -61,10 +61,7 @@ min-height: 200px !important;
                                                     <th class="border-top-0">Book Name</th>
                                                     <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Book Type</th>
-
-
-
-                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Design Status</th>
                                                     <th class="border-top-0">Action</th>
 
                                                 </tr>
@@ -93,16 +90,17 @@ min-height: 200px !important;
                                                     </td>
                                                     <td class="text-truncate">
                                                      @if($list->design_image == null)
-                                                     Pending
+                                                     Design Pending
                                                      @else
-                                                     Success
+                                                     Design Success
                                                      @endif
                                                     </td>
                                                     <td class="text-truncate" style="text-align: center">
-                                                        <a href="{{$list->b_file}}" download="{{$list->b_file}}"  class="btn btn-success">Book Download</a>
+                                                        {{-- <a href="351135954_bnb.txt" download="351135954_bnb.txt" class="file">351135954_bnb.txt</a> --}}
+                                                        <a href="{{asset('books/'.$list->b_file)}}" download="{{asset('books/'.$list->b_file)}}"  class="btn btn-success">Download Book</a>
                                                           <button class="btn btn-primary design" id="" design="{{$list->id}}"
                                                              data-toggle="modal" data-target="#exampleModal">Add Design</button>
-
+                                                            
                                                         </td>
 
                                                 </tr>        
@@ -130,7 +128,7 @@ min-height: 200px !important;
                             
                         <div class="modal-body">
                             @csrf
-                            <input type="file" name="img" class="dropify" data-height="100" multiple/>
+                            <input type="file" name="img" class="dropify" data-height="100" accept=".jpg,.jpeg,.png,.psd,.bmp,.ai,.icon" multiple/>
                             <input type="text" name="data" value="" style="display: none">
 
                         </div>

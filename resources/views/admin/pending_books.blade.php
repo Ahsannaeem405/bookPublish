@@ -67,7 +67,9 @@ Pending Books
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @php
+                                                    $i=1;
+                                                @endphp
 
                                                 @foreach($mybook as $list)
                                                

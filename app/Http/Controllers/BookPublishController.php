@@ -20,6 +20,8 @@ class BookPublishController extends Controller
          $user_id=Auth::user()->id;
         
          $user['author_book']=Book::where('user_id',$user_id)->get();
+         $user['author_book_publish']=Book::where('user_id',$user_id)->where('status','1')->get();
+         $user['author_book_pending']=Book::where('user_id',$user_id)->where('status',null)->get();
         //  dd($user['author_book']);
           /////////////////////////designer panel/////////////////////////
           $user['design_book_pending']=Book::where('designer',$user_id)->where('design_image',null)->count();
@@ -63,7 +65,7 @@ class BookPublishController extends Controller
     }
     public function update_authors(Request $request,$id)
     {
-       
+      // dd($id);
        // dd($request->input());
         // $request->validate([
         //     'name' => 'required',
@@ -291,7 +293,7 @@ class BookPublishController extends Controller
     public function add_design(Request $request)
     {
         //
-        dd($request->input());
+       // dd($request->input());
        // dd($request->img);
        $id=$request->data;
         $image=Book::find($id);
@@ -316,7 +318,7 @@ class BookPublishController extends Controller
     {
 
         $designer_id=Auth::user()->id;
-        $designer_book['mybook']=Book::get();
+        $designer_book['mybook']=Book::where('status',null)->where('design_image','!=',null)->get();
  
         return view(' admin.approval_books', $designer_book);
     }
@@ -337,14 +339,14 @@ class BookPublishController extends Controller
        $book_status = Book::find($book_id);
       $book_status->status='1';
       $book_status->update();
-      return redirect()->back()->with('message_success','Book active!'); 
+      return redirect()->back()->with('message_success','Book has been Approved!'); 
     }
     
     ///////////////////////////end/////////////////////////////////////////
     public function pending_books(Request $request )
     {
         $designer_id=Auth::user()->id;
-        $designer_book['mybook']=Book::where('status','')->get();
+        $designer_book['mybook']=Book::where('status',null)->get();
  
         return view(' admin.pending_books', $designer_book);
     }

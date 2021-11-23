@@ -122,7 +122,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{ url('admin/update_Designers') }}/{{$list->id}}" method="POST">
+                    <form action="{{ url('admin/update_authors') }}/{{$list->id}}" method="POST">
                         @csrf
                         <div class="form">
                             <input type="text" name="name" placeholder="Name" value="{{$list->name}}"  class="form-control" required>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="modal-footer">
                     {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                    <button type="submit" name="update" class="btn btn-primary">Update Advisor</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update Author</button>
                 </div>
                 
             </form>
@@ -219,7 +219,7 @@
                 </div>
                 <div class="modal-footer">
                     {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                    <button type="submit" name="submit" class="btn btn-primary">Add Advisor</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Add Author</button>
                 </div>
                 </form>
             </div>

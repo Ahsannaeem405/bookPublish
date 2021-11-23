@@ -286,13 +286,13 @@ input[type=text]:placeholder {
         <!-- Login Form -->
         <form method="POST" action="{{ route('login') }}">
           @csrf
-          <input type="email" name="email" id="login" class="fadeIn second  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus  placeholder="Email" >
+          <input type="email" name="email" id="login" class="fadeIn second form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus  placeholder="Email" >
           @error('email')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
           </span>
       @enderror
-          <input type="password" id="password" name="password" class="fadeIn third  @error('password') is-invalid @enderror"  required autocomplete="current-password" placeholder="password">
+          <input type="password" id="password" name="password" class="fadeIn third form-control  @error('password') is-invalid @enderror"  required autocomplete="current-password" placeholder="password">
           @error('password')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>

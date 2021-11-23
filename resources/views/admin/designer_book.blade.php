@@ -75,7 +75,7 @@
                                                     <th class="border-top-0">Book Name</th>
                                                     <th class="border-top-0">Aurthor Name</th>
                                                     <th class="border-top-0">Book Type</th>
-                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Design Status</th>
                                                     <th class="border-top-0">Action</th>
 
                                                 </tr>
@@ -103,16 +103,16 @@
                                                             {{ $list->b_type }}
                                                         </td>
                                                         <td class="text-truncate">
-                                                            @if($list->design_image == null)
-                                                            Pending
+                                                            @if($list->status == 0)
+                                                            Pending Approval
                                                             @else
-                                                            Success
+                                                            Approved
                                                             @endif
                                                         </td>
                                                         <td class="text-truncate" style="text-align: center">
-                                                            <a href="{{ $list->design_image }}"
-                                                                download="{{ $list->design_image }}"
-                                                                class="btn btn-success">Design Download</a>
+                                                            <a href="{{asset('design/'.$list->design_image)}}"
+                                                                download="{{asset('design/'.$list->design_image)}}"
+                                                                class="btn btn-success">Download Design</a>
 
 
                                                         </td>

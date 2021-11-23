@@ -77,7 +77,7 @@
 <div class="navbar-header">
 <ul class="nav navbar-nav flex-row">
 <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-<li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('profile/AdminLTELogo.png')}}"><img class="brand-logo" alt="logo" src="{{asset('logo.png')}}" style="width:100%;">
+<li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('profile/AdminLTELogo.png')}}"><img class="brand-logo" alt="logo" src="{{asset('profile/AdminLTELogo.png')}}" >
 
 </a></li>
 
@@ -95,21 +95,34 @@
 
 
 <ul class="nav navbar-nav float-right">
+    @if(Auth::user()->role == 'admin' || Auth::user()->role == 'designer')
 <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
 
 <span class="badge badge-pill badge-danger badge-up badge-glow">
+    @if(Auth::user()->role == 'admin')
     @php
             $total_book=App\Models\Book::orderby('id','DESC')->limit(4)->get();
-            $not_book=count($total_book);
+            $notification_book=count($total_book);
     @endphp
     
-{{$not_book}}
+{{$notification_book}}
+@endif
+@if(Auth::user()->role == 'designer')
+@php
+        $designer_id=Auth::user()->id;
+        $total_book=App\Models\Book::where('designer',$designer_id)->orderby('id','DESC')->limit(4)->get();
+        $notification_book=count($total_book);
+@endphp
+
+{{$notification_book}}
+@endif
 </span>
 </a>
 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
 <li class="dropdown-menu-header">
 <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6><span class="notification-tag badge badge-danger float-right m-0"> New </span>
 </li>
+@if(Auth::user()->role == 'admin')
 @foreach($total_book as $list)
 @php
 $auth=App\Models\User::find($list->user_id);
@@ -117,7 +130,7 @@ $design=App\Models\User::find($list->designer);
 
 @endphp
  <li class="scrollable-container media-list w-100 ps">
-<a href="{{url('admins/user')}}">
+<a href="{{url('admin/books')}}">
 <div class="media">
 <div class="media-left align-self-center"><img src="{{asset('profile')}}/{{$auth->image}}" with="50" height="50" class=" img-circle bg-cyan mr-0"></div>
 <div class="media-body">
@@ -128,14 +141,31 @@ $design=App\Models\User::find($list->designer);
 </a>
 </li> 
 @endforeach
+@endif
+@if(Auth::user()->role == 'designer')
+@foreach($total_book as $list)
+@php
+$auth=App\Models\User::find($list->user_id);
+$design=App\Models\User::find($list->designer);
 
+@endphp
+ <li class="scrollable-container media-list w-100 ps">
+<a href="{{url('admin/designer_book')}}">
+<div class="media">
+<div class="media-left align-self-center"><img src="{{asset('profile')}}/{{$auth->image}}" with="50" height="50" class=" img-circle bg-cyan mr-0"></div>
+<div class="media-body">
+<h6 class="media-heading">{{$auth->name}}</h6>
+<p class="notification-text font-small-3 text-muted">{{$list->b_title}}</p>
+</div>
+</div>
+</a>
+</li> 
+@endforeach
+@endif
 <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center"  href="#">Read all notifications</a></li>
-
-
-
 </ul>
 </li>
-
+@endif
 
 <li class="dropdown dropdown-user nav-item">
     <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
@@ -167,7 +197,8 @@ document.getElementById('logout-form').submit();">
 <div class="main-menu-content">
 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-<li class="nav-item"><a href="{{url('profile/AdminLTELogo.png')}}"><i class="la la-th-large"></i><span class="menu-title" data-i18n="Shop">Dashboard</span></a>
+<li class="nav-item"><a href="{{url('profile/AdminLTELogo.png')}}"><i class="la la-th-large"></i>
+    <span class="menu-title" data-i18n="Shop">Dashboard</span></a>
 </li>
 @if(Auth::user()->role == 'admin')
 <li class="nav-item has-sub"><a href="#"><i class="la la-user"></i><span class="menu-title" data-i18n="Users">Users</span></a>
