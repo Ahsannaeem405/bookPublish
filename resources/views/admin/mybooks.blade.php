@@ -93,7 +93,7 @@ My Books
                                                                 <i class="mdi mdi-dots-horizontal"></i>
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="table-action" >
-                                                                <a href="{{$list->b_file}}" download="{{$list->b_file}}" class="dropdown-item"  >Download Book</a>
+                                                                <a href="{{asset('books/'.$list->b_file)}}" download="{{asset('books/'.$list->b_file)}}" class="dropdown-item"  >Download Book</a>
                                                                 <a class="dropdown-item" href="{{url('admin/delete_mybooks')}}/{{$list->id}}">Delete</a>
 
                                                             </div>

@@ -67,17 +67,17 @@ Submission
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label >Name:</label>
-                                            <input type="text" name="name"  class="form-control" value="{{$user_data->name}}" placeholder="Name">
+                                            <input type="text" name="name"  class="form-control" value="{{$user_data->name}}" placeholder="Name" required>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Email:</label>
 
-                                            <input type="email" name="email" class="form-control"  value="{{$user_data->email}}" placeholder="Mobile Number">
+                                            <input type="email" name="email" class="form-control"  value="{{$user_data->email}}" placeholder="Mobile Number" required>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Phone Number:</label>
 
-                                            <input type="text" name="number"  value="{{$user_data->number}}" class="form-control" placeholder="Phone Number">
+                                            <input type="text" name="number"  value="{{$user_data->number}}" class="form-control" placeholder="Phone Number" required>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12" style="padding:20px">
                                             <label>Old Password:</label>
